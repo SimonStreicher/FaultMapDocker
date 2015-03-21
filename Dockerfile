@@ -50,7 +50,6 @@ RUN cd repos && \
 # Get FaultMap code
 RUN cd repos && \
     git clone --progress -v "https://github.com/simonstreicher/faultmap.git"
-    s
 
 # Use ENV to add files to PATH
 #ENV PATH /usr/local/...:$PATH
