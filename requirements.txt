@@ -1,0 +1,15 @@
+nose
+six
+python-dateutil
+pytz
+pyparsing
+setuptools
+scikit-learn
+decorator
+networkx
+h5py
+numexpr
+tables
+python-igraph
+progressbar
+control
