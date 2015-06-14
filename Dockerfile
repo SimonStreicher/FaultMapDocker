@@ -19,8 +19,8 @@ RUN apt-get update && apt-get install -y \
 #    python-qt4 qt4-dev-tools build-essential
 
 
-# Consider using Ubuntu packages were possible instead of building each time	
-RUN wget https://www.dropbox.com/s/5f4mfsxvzdxuy88/requirements.txt && \
+# Consider using Ubuntu packages were possible instead of building each time
+RUN wget https://www.dropbox.com/s/56cax5rn0xlphhm/requirements.txt && \
     pip install numpy && \
     pip install numexpr && \
     pip install -r requirements.txt
