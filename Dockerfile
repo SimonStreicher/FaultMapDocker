@@ -7,7 +7,8 @@ MAINTAINER Simon Streicher <streichersj@gmail.com>
 
 # Install system level dependencies
 RUN apt-get update && apt-get install -y \
-    pkg-config \    
+    pkg-config \
+    ghostscript dvipng \    
     python python-dev python-pip cython\
     git default-jdk wget \
     libfreetype6-dev libxft-dev libpng-dev libxext-dev \
