@@ -36,7 +36,7 @@ RUN mkdir repos && cd repos && \
 
 # Install pyunicorn
 RUN cd repos && mkdir pyunicorn && \
-    wget https://www.dropbox.com/s/s5giot81t87h8h4/pyunicorn-0.3.2.tar.gz && \
+    wget https://www.dropbox.com/s/a2c2o3486vb12h1/pyunicorn-0.3.2.tar.gz && \
     tar -xvzf pyunicorn-0.3.2.tar.gz && \
     cd pyunicorn-0.3.2 && \
     python setup.py install
