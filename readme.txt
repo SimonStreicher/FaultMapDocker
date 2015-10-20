@@ -17,7 +17,8 @@ Copy the config.json file into the faultmap repo directory:
 cp /opt/faultmap_data/config.json /repos/faultmap
 
 Now you can run the FaultMap command as follows, for example:
-python /repos/faultmap/run_weightcalc.py
+cd /repos/faultmap
+python run_weightcalc.py
 
 
 
