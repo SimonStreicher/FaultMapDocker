@@ -1,0 +1,5 @@
+{
+  "dataloc": "/opt/faultmap_data/data",
+  "saveloc": "/opt/faultmap_data/exports",
+  "infodynamicsloc": "/repos/faultmap/infodynamics.jar"
+}

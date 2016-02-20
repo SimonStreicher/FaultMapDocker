@@ -7,7 +7,8 @@ MAINTAINER Simon Streicher <streichersj@gmail.com>
 
 # Install system level dependencies
 RUN apt-get update && apt-get install -y \
-    pkg-config \    
+    pkg-config \
+    ghostscript dvipng \    
     python python-dev python-pip cython\
     git default-jdk wget \
     libfreetype6-dev libxft-dev libpng-dev libxext-dev \
@@ -19,8 +20,8 @@ RUN apt-get update && apt-get install -y \
 #    python-qt4 qt4-dev-tools build-essential
 
 
-# Consider using Ubuntu packages were possible instead of building each time	
-RUN wget https://www.dropbox.com/s/5f4mfsxvzdxuy88/requirements.txt && \
+# Consider using Ubuntu packages were possible instead of building each time
+RUN wget https://www.dropbox.com/s/56cax5rn0xlphhm/requirements.txt && \
     pip install numpy && \
     pip install numexpr && \
     pip install -r requirements.txt
@@ -36,7 +37,7 @@ RUN mkdir repos && cd repos && \
 
 # Install pyunicorn
 RUN cd repos && mkdir pyunicorn && \
-    wget https://www.dropbox.com/s/s5giot81t87h8h4/pyunicorn-0.3.2.tar.gz && \
+    wget https://www.dropbox.com/s/a2c2o3486vb12h1/pyunicorn-0.3.2.tar.gz && \
     tar -xvzf pyunicorn-0.3.2.tar.gz && \
     cd pyunicorn-0.3.2 && \
     python setup.py install
