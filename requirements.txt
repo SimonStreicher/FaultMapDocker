@@ -13,3 +13,4 @@ tables
 python-igraph
 progressbar
 control
+pandas
