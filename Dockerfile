@@ -17,8 +17,6 @@ RUN apt-get update && apt-get install -y \
     python-numpy python-scipy python-matplotlib \
     python-cairo python-igraph
 
-#    python-qt4 qt4-dev-tools build-essential
-
 
 # Consider using Ubuntu packages were possible instead of building each time
 RUN wget https://www.dropbox.com/s/56cax5rn0xlphhm/requirements.txt && \
@@ -48,9 +46,8 @@ RUN cd repos && \
     cd jpype && git reset --hard 50cfd194bb20631feda50fedae41ed18eeca1668 && \
     python setup.py install
 
-# Get FaultMap code
-RUN cd repos && \
-    git clone --progress -v "https://github.com/simonstreicher/faultmap.git"
-
 # Use ENV to add files to PATH
 #ENV PATH /usr/local/...:$PATH
+
+# Default command
+CMD /bin/bash
