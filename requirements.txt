@@ -14,3 +14,4 @@ python-igraph
 progressbar
 control
 pandas
+redis
