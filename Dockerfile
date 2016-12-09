@@ -33,4 +33,4 @@ ENV PATH /opt/conda/bin:$PATH
 #ENV PATH /usr/local/...:$PATH
 
 # Default command
-CMD /bin/bash cd ~/FaultMap && source activate faultmap
+CMD /bin/bash
