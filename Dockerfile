@@ -1,8 +1,8 @@
 # FaultMap
 #
-# VERSION 0.1
+# VERSION 0.2
 
-FROM ubuntu:14.04
+FROM ubuntu:16.04
 MAINTAINER Simon Streicher <streichersj@gmail.com>
 
 # Install system level dependencies
@@ -13,38 +13,24 @@ RUN apt-get update && apt-get install -y \
     git default-jdk wget \
     libfreetype6-dev libxft-dev libpng-dev libxext-dev \
     gfortran libopenblas-dev liblapack-dev \
-    libhdf5-dev \
-    python-numpy python-scipy python-matplotlib \
-    python-cairo python-igraph
+    libhdf5-dev
+#    python-numpy python-scipy python-matplotlib \
+#    python-cairo
 
+# Install Miniconda
+RUN echo 'export PATH=/opt/conda/bin:$PATH' > /etc/profile.d/conda.sh && \
+    wget --quiet https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O ~/miniconda.sh && \
+    /bin/bash ~/miniconda.sh -b -p /opt/conda && \
+    rm ~/miniconda.sh
 
-# Consider using Ubuntu packages were possible instead of building each time
-RUN wget https://www.dropbox.com/s/56cax5rn0xlphhm/requirements.txt && \
-    pip install numpy && \
-    pip install numexpr && \
-    pip install -r requirements.txt
+# Clone FaultMap repository and create environment
+RUN git clone https://github.com/SimonStreicher/FaultMap.git && \
+    cd FaultMap && \
+    export PATH=/opt/conda/bin:$PATH && \
+    conda env create -f environment.yml && \
+    source activate faultmap
 
-# Install pathos
-RUN mkdir repos && cd repos && \
-    git clone --progress -v "https://github.com/uqfoundation/pathos.git" && \
-    cd pathos && \
-    wget http://dev.danse.us/packages/pathos-0.1a1.tgz && \
-    tar -xvzf pathos-0.1a1.tgz && \
-    easy_install -f . pathos-0.1a1 && \
-    python setup.py install
-
-# Install pyunicorn
-RUN cd repos && mkdir pyunicorn && \
-    wget https://www.dropbox.com/s/a2c2o3486vb12h1/pyunicorn-0.3.2.tar.gz && \
-    tar -xvzf pyunicorn-0.3.2.tar.gz && \
-    cd pyunicorn-0.3.2 && \
-    python setup.py install
-
-# Install JPype1
-RUN cd repos && \
-    git clone --progress -v "https://github.com/originell/jpype.git" && \
-    cd jpype && git reset --hard 50cfd194bb20631feda50fedae41ed18eeca1668 && \
-    python setup.py install
+ENV PATH /opt/conda/bin:$PATH
 
 # Use ENV to add files to PATH
 #ENV PATH /usr/local/...:$PATH
