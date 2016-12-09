@@ -13,9 +13,7 @@ RUN apt-get update && apt-get install -y \
     git default-jdk wget \
     libfreetype6-dev libxft-dev libpng-dev libxext-dev \
     gfortran libopenblas-dev liblapack-dev \
-    libhdf5-dev
-#    python-numpy python-scipy python-matplotlib \
-#    python-cairo
+    libhdf5-dev texlive-latex-extra
 
 # Install Miniconda
 RUN echo 'export PATH=/opt/conda/bin:$PATH' > /etc/profile.d/conda.sh && \
@@ -24,11 +22,10 @@ RUN echo 'export PATH=/opt/conda/bin:$PATH' > /etc/profile.d/conda.sh && \
     rm ~/miniconda.sh
 
 # Clone FaultMap repository and create environment
-RUN git clone https://github.com/SimonStreicher/FaultMap.git && \
+RUN cd ~ && git clone https://github.com/SimonStreicher/FaultMap.git && \
     cd FaultMap && \
     export PATH=/opt/conda/bin:$PATH && \
-    conda env create -f environment.yml && \
-    source activate faultmap
+    conda env create -f environment.yml
 
 ENV PATH /opt/conda/bin:$PATH
 
@@ -36,4 +33,4 @@ ENV PATH /opt/conda/bin:$PATH
 #ENV PATH /usr/local/...:$PATH
 
 # Default command
-CMD /bin/bash
+CMD /bin/bash cd ~/FaultMap && source activate faultmap
